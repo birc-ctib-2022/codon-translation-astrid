@@ -39,10 +39,9 @@ def split_codons(dna: str) -> list[str] | None:
     codons = []
 
     if len(dna) % 3 == 0:
-        while triplet < len(dna):
-            string = dna[triplet] + dna[triplet+1] + dna[triplet+2]
+        for i in range(0,len(dna),3):
+            string = dna[i:i+3]
             codons.append(string)
-            triplet += 3
 
     else:
         return None
@@ -110,10 +109,8 @@ def translate_dna(dna: str) -> str:
     return aa
 
 
-# print(split_codons('aaacccgggttt'))
+print(split_codons('aaacccgggttt'))
 
-# print(translate_codons(['tgt', 'tgc', 'tga']))
+print(translate_codons(['tgt', 'tgc', 'tga']))
 
-# print(translate_codons('TGTTGCTGA'))
-
-# print(translate_dna('tgttgctga'))
+print(translate_dna('tgttgctga'))
