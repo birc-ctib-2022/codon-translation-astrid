@@ -109,8 +109,8 @@ def translate_dna(dna: str) -> str:
     return aa
 
 
-print(split_codons('aaacccgggttt'))
+# print(split_codons('aaacccgggttt'))
 
-print(translate_codons(['tgt', 'tgc', 'tga']))
+# print(translate_codons(['tgt', 'tgc', 'tga']))
 
-print(translate_dna('tgttgctga'))
+# print(translate_dna('tgttgctga'))
