@@ -21,7 +21,7 @@ CODON_MAP = {'TTT': 'F', 'TTC': 'F', 'TTA': 'L', 'TTG': 'L',
 def split_codons(dna: str) -> list[str] | None:
     """Split a DNA string into a list of triplets.
 
-    If the length of the string is a multiple of tree, then this
+    If the length of the string is a multiple of three, then this
     function splits the string into non-overlapping triplets.
 
     >>> split_codons('aaacccgggttt')
@@ -35,8 +35,17 @@ def split_codons(dna: str) -> list[str] | None:
     True
 
     """
-    # FIXME: Implement the function
-    return []
+    codons = []
+
+    if len(dna) % 3 == 0:
+        for i in range(0,len(dna),3):
+            string = dna[i:i+3]
+            codons.append(string)
+
+    else:
+        return None
+
+    return codons
 
 
 def translate_codons(codons: list[str]) -> list[str]:
@@ -60,8 +69,22 @@ def translate_codons(codons: list[str]) -> list[str]:
     True
 
     """
-    # FIXME: Implement the function
-    return []
+    if codons == None:
+        return None
+
+    trans = []
+
+    for codon in codons:
+        codon = codon.upper()
+
+        if codon in CODON_MAP:
+            trans += CODON_MAP[codon]
+
+        else:
+            return None
+
+
+    return trans
 
 
 def translate_dna(dna: str) -> str:
@@ -72,7 +95,7 @@ def translate_dna(dna: str) -> str:
     >>> translate_dna('tgttgctga')
     'CC*'
 
-    If the sequence does not have a length that is a multiple of three, of if
+    If the sequence does not have a length that is a multiple of three, or if
     any of the triplets in it are not valid codons (when in uppercase), the function
     should return `None`.
 
@@ -80,5 +103,19 @@ def translate_dna(dna: str) -> str:
     True
 
     """
-    # FIXME: Implement the function
-    return ""
+    codons = split_codons(dna)
+    trans = translate_codons(codons)
+
+    if trans == None:
+        return None
+
+    aa = ''.join(trans)
+
+    return aa
+
+
+# print(split_codons('aaacccgggttt'))
+
+# print(split_codons("aaaccggg"))
+
+# print(translate_dna('tgttgctga'))
